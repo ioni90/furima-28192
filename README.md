@@ -1,6 +1,6 @@
 # テーブル設計
 
-![ER図](https://gyazo.com/7257fee4e16ae27e1b7fdd07c62212a1)
+![ER図](https://gyazo.com/fde8a28415d2cc887765dfd553cede5c)
 
 ## users テーブル
 
@@ -18,7 +18,7 @@
 ### Association
 
 - has_many :items
-- has_one :purchases
+- has_many :purchases
 
 
 ## items テーブル
@@ -37,13 +37,13 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
-- belongs_to_active_hash :categories
-- belongs_to_active_hash :item_conditions
-- belongs_to_active_hash :delivery_fees
-- belongs_to_active_hash :prefectures
-- belongs_to_active_hash :shipping_dates
+- belongs_to :user
+- has_one :purchase
+- belongs_to_active_hash :category
+- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :delivery_fee
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :shipping_date
 
 
 ## purchases テーブル
@@ -52,32 +52,30 @@
 | ------ | ---------- | ------------------------------ |
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
-| ship_to_location | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- belongs_to :ship_to_locations
+- belongs_to :user
+- belongs_to :item
+- has_one :ship_to_location
 
 
 ## ship_to_locations テーブル
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| user | references | null: false, foreign_key: true |
-| postal_code | integer | null: false |
+| postal_code | string | null: false |
 | prefecture_id | integer | null: false |
 | city | string | null: false |
 | address | string | null: false |
-| building | string | null: false |
-| phone_num | integer | null: false |
+| building | string | |
+| phone_num | string | null: false |
+| purchase | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
-- belongs_to_active_hash :prefectures
+- belongs_to :purchase
+- belongs_to_active_hash :prefecture
 
 
 This README would normally document whatever steps are necessary to get the
