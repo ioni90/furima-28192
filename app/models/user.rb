@@ -8,10 +8,10 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :email, presence: true, 
                     uniqueness: true, 
-                    format: { with: /\A([^@\s]+)@((?:[-a-z\d]+\.)+[a-z]{2})\z/i }
-  validates :password, presence: true, length: { minimum: 6 }
-                       format: { with: /\A[a-zA-Z\d]+\z/ },
-                       confirmation: true
+                    format: { with: /@.+/ }
+  validates :password, presence: true, length: { minimum: 6 },
+                       format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :password_confirmation, presence: true
 
   ## 本人情報確認
   validates :first_name, presence: true,
