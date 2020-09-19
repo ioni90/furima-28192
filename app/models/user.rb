@@ -10,7 +10,7 @@ class User < ApplicationRecord
                     uniqueness: true, 
                     format: { with: /@.+/ }
   validates :password, presence: true, length: { minimum: 6 },
-                       format: { with: /\A[a-zA-Z0-9]+\z/ }
+                       format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
   validates :password_confirmation, presence: true
 
   ## 本人情報確認
