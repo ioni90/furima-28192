@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :items
   full_width_char = '\A[ぁ-んァ-ン一-龥]+\z'
   kana_char = '\A[ァ-ン]+\z'
 
