@@ -7,7 +7,6 @@ RSpec.describe Item, type: :model do
     end
 
     it 'すべての値が正しく入力されていれば保存できること' do
-      @item.user_id = FactoryBot.build(:user).id
       expect(@item).to be_valid
     end
     it 'ユーザーが紐付いていないと商品情報は保存できない' do
