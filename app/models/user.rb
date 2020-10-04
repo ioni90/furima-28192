@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
+  has_many :purchases
   full_width_char = '\A[ぁ-んァ-ン一-龥]+\z'
   kana_char = '\A[ァ-ン]+\z'
 
