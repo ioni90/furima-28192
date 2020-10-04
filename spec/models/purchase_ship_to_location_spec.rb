@@ -23,6 +23,11 @@ RSpec.describe PurchaseShipToLocation, type: :model do
       @purchase_ship_to_location.valid?
       expect(@purchase_ship_to_location.errors.full_messages).to include("Postal code can't be blank")
     end
+    it '郵便番号の桁が合わないと購入できない' do
+      @purchase_ship_to_location.postal_code = '1111-1111'
+      @purchase_ship_to_location.valid?
+      expect(@purchase_ship_to_location.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+    end
     it '郵便番号にハイフンが含まれていないと購入できない' do
       @purchase_ship_to_location.postal_code = '1111111'
       @purchase_ship_to_location.valid?
