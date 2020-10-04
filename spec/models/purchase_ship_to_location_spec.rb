@@ -26,12 +26,12 @@ RSpec.describe PurchaseShipToLocation, type: :model do
     it '郵便番号にハイフンが含まれていないと購入できない' do
       @purchase_ship_to_location.postal_code = '1111111'
       @purchase_ship_to_location.valid?
-      expect(@purchase_ship_to_location.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@purchase_ship_to_location.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
     end
     it '都道府県が--だと購入できない' do
       @purchase_ship_to_location.prefecture_id = 0
       @purchase_ship_to_location.valid?
-      expect(@purchase_ship_to_location.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@purchase_ship_to_location.errors.full_messages).to include('Prefecture must be other than 0')
     end
     it '市区町村が空だと購入できない' do
       @purchase_ship_to_location.city = nil
@@ -51,7 +51,7 @@ RSpec.describe PurchaseShipToLocation, type: :model do
     it '電話番号にハイフンが含まれていると購入できない' do
       @purchase_ship_to_location.phone_num = '1111-1111'
       @purchase_ship_to_location.valid?
-      expect(@purchase_ship_to_location.errors.full_messages).to include("Phone num is invalid")
+      expect(@purchase_ship_to_location.errors.full_messages).to include('Phone num is invalid')
     end
   end
 end
