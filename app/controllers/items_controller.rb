@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.includes(:user).order(created_at: :DESC)
+    @purchases = Purchase.all
   end
 
   def new
@@ -19,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @purchase = Purchase.exists?(item_id: @item.id)
   end
 
   def edit
