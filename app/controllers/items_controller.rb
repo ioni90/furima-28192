@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order(created_at: :DESC)
-    @purchases = Purchase.all
   end
 
   def new
@@ -21,7 +20,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @purchase = Purchase.exists?(item_id: @item.id)
   end
 
   def edit

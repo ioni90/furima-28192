@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if Purchase.exists?(item_id: @item.id)
+    if @item.purchase
       redirect_to root_path
     else
       @purchase = PurchaseShipToLocation.new
